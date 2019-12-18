@@ -1,5 +1,21 @@
 let headerInfo = document.querySelector('.ff__headerInfo');
+let contentblock = document.querySelector('.ff__content');
 console.log(headerInfo);
+console.log(contentblock);
+
+
+
+// function vkApi(method, options) {
+//   return new Promise((resolve, reject) => {
+//     VK.api(method, options, response, () => {
+//       if(response.error) {
+//         reject(new Error(response.error.error_msg));
+//       } else {
+//         resolve(response);
+//       }
+//     });
+//   });
+// }
 
 
 new Promise((resolve) => {
@@ -25,7 +41,7 @@ new Promise((resolve) => {
       
     });
   })
-  .then(() => {
+  .then(() => {    
     return new Promise((resolve, reject) => {
       VK.api('users.get', {v: '5.8', name_case: 'gen'}, (response) => {
         console.log(response);
@@ -51,4 +67,16 @@ new Promise((resolve) => {
   })
   .then((response) => {
     console.log(response);
+    let friend = response.response.items;
+    for(let key in friend) {
+      console.log(friend[key].first_name);
+      
+      // let blockfriend = document.createElement('div');
+      // blockfriend.classList.add('ff__blockonefriend');
+      // contentblock.appendChild(blockfriend);
+      let imgfriend = document.createElement('img');   
+      imgfriend.setAttribute('src', friend[key].photo_100);      
+      console.log(imgfriend);
+      contentblock.appendChild(imgfriend);
+    }
   });
