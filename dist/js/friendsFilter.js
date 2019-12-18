@@ -27,7 +27,7 @@ new Promise((resolve) => {
   })
   .then(() => {
     return new Promise((resolve, reject) => {
-      VK.api('users.get', {name_case: 'gen'}, (response) => {
+      VK.api('users.get', {v: '5.8', name_case: 'gen'}, (response) => {
         console.log(response);
         if(response.error) {
           reject(new Error(response.error.error_msg));
