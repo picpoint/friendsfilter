@@ -17,7 +17,7 @@ new Promise((resolve) => {
         //console.log(response);
         if(response.session) {          
           resolve(response);
-          //headerInfo.textContent = `Друзья ${response.session.user.first_name} ${response.session.user.last_name}`;          
+          headerInfo.textContent = `Друзья ${response.session.user.first_name} ${response.session.user.last_name}`;          
         } else {
           reject(new Error(`***ERR TO AUTHORIZ***`));
         }
@@ -27,7 +27,7 @@ new Promise((resolve) => {
   })
   .then(() => {
     return new Promise((resolve, reject) => {
-      VK.api('users.get', {v: '5.103'}, {name_case: 'gen'}, (response) => {
+      VK.api('users.get', {name_case: 'gen'}, (response) => {
         console.log(response);
         if(response.error) {
           reject(new Error(response.error.error_msg));
@@ -38,3 +38,17 @@ new Promise((resolve) => {
       });
     });
   })
+  .then(() => {
+    return new Promise((resolve, reject) => {
+      VK.api('friends.get', {v: '5.8', fields: 'photo_100,country,city'}, (response) => {
+        if(response.error) {
+          reject(new Error(response.error.error_msg));
+        } else {
+          resolve(response);
+        }
+      });
+    });
+  })
+  .then((response) => {
+    console.log(response);
+  });
