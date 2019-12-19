@@ -1,5 +1,6 @@
 @import "smart-grid.less";
 @import "var.less";
+@import "fonts.less";
 
 .reset();
 
@@ -15,6 +16,31 @@
 	box-sizing: border-box;
 }
 
+.findinputs {
+  border: @border;
+  display: flex;
+  justify-content: space-around;    
+  align-items: center;
+  position: relative;      
+  width: 50%;
+  height: 100%;
+  i {      
+    //border: @border;
+    position: absolute;
+    left: 35px;
+    color: @colordarkgray;
+  }
+  input {
+    width: 90%;
+    height: 60%;
+    border-radius: 25px;      
+    text-indent: 40px;      
+    border: none;      
+    outline: none;
+    font-family: 'Play', sans-serif;
+  }
+}
+
 .ff {    
   &__wrap {
     //border: @border;
@@ -26,7 +52,7 @@
   }
   &__selectblock {
     border: @border;
-    width: 70%;
+    width: 50%;
     height: 70%;
     border-radius: 12px;
   }
@@ -44,27 +70,23 @@
       font-size: 1.5rem;
       color: @colorlightgray;
       margin-left: 30px;
+      font-family: 'Play', sans-serif;
+      font-weight: bold;
     }
   }
   &__findfriends {
     height: 50px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around;    
     align-items: center;
-    background-color: @colorlightgray;
-    i {
-      border: @border;
-      position: absolute;
-      
-    }
-    input {
-      width: 45%;
-      height: 60%;
-      border-radius: 25px;
-      padding-left: 10px;
-      border: none;
-    }
+    background-color: @colorlightgray;        
   }
+  &__findleft {
+    .findinputs();
+  }  
+  &__findright {
+    .findinputs();
+  } 
 
 
 }
