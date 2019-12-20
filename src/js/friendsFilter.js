@@ -1,7 +1,7 @@
 let headerInfo = document.querySelector('.ff__selecthdr').firstElementChild;
-let contentblock = document.querySelector('.ff__pplleftblock');
+let pplleftblock = document.querySelector('.ff__pplleftblock');
 console.log(headerInfo);
-console.log(contentblock);
+console.log(pplleftblock);
 
 
 
@@ -69,14 +69,32 @@ new Promise((resolve) => {
     console.log(response);
     let friend = response.response.items;
     for(let key in friend) {
-      console.log(friend[key].first_name);
+      console.log(friend[key].first_name);            
+      let leftblockfriend = document.createElement('div');
+      leftblockfriend.classList.add('ff__leftblockfriend');
+      pplleftblock.appendChild(leftblockfriend);
+
+      let frienddata = document.createElement('div');
+      frienddata.classList.add('ff__frienddata');
+
+      leftblockfriend.appendChild(frienddata);
       
-      // let blockfriend = document.createElement('div');
-      // blockfriend.classList.add('ff__blockonefriend');
-      // contentblock.appendChild(blockfriend);
-      let imgfriend = document.createElement('img');   
-      imgfriend.setAttribute('src', friend[key].photo_100);      
-      console.log(imgfriend);
-      contentblock.appendChild(imgfriend);
+      let img = document.createElement('img');
+      img.src = friend[key].photo_100;
+      img.style.height = '100%';
+      img.style.marginLeft = '10px';
+      img.style.borderRadius = '50%';
+      frienddata.appendChild(img);
+
+      let span = document.createElement('span');
+      frienddata.appendChild(span);
+      span.innerText = `${friend[key].first_name} ${friend[key].last_name}`;
+      span.style.marginLeft = '5px';
+
+      let friendadd = document.createElement('div');
+      friendadd.classList.add('ff__friendadd');
+      leftblockfriend.appendChild(friendadd);
+      
+
     }
   });
