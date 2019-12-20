@@ -1,5 +1,5 @@
-let headerInfo = document.querySelector('.ff__headerInfo');
-let contentblock = document.querySelector('.ff__content');
+let headerInfo = document.querySelector('.ff__selecthdr').firstElementChild;
+let contentblock = document.querySelector('.ff__pplleftblock');
 console.log(headerInfo);
 console.log(contentblock);
 

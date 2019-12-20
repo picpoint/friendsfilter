@@ -16,8 +16,9 @@
 	box-sizing: border-box;
 }
 
+// MIXINS START
 .findinputs {
-  border: @border;
+  //border: @border;
   display: flex;
   justify-content: space-around;    
   align-items: center;
@@ -41,6 +42,20 @@
   }
 }
 
+.pplblocktext {  
+  display: flex;
+  justify-content: start;    
+  align-items: center;
+  height: 6%;
+  span {      
+    font-family: 'Play', sans-serif;      
+    margin-left: 10px;
+  }
+}
+
+// MIXINS END
+
+
 .ff {    
   &__wrap {
     //border: @border;
@@ -51,21 +66,18 @@
     background-color: @colordarkgray;
   }
   &__selectblock {
-    border: @border;
+    //border: @border;
     width: 50%;
     height: 70%;
     border-radius: 12px;
   }
   &__selecthdr {
     display: flex;
-    align-items: center;
-    background-color: @colordarkblue;
-    height: 50px;
+    align-items: center;        
+    height: 8%;
     border-top-left-radius: 12px;
-    border-top-right-radius: 12px;    
-    //background: linear-gradient(to top, @colordarkblue 20%, @colorlightblue 50%, @colordarkblue 80%);
-    //background-color: @colorverydarkblue;
-    background-color: @colororange;
+    border-top-right-radius: 12px;        
+    background-color: @colororange;    
     span {
       font-size: 1.5rem;
       color: @colorlightgray;
@@ -74,11 +86,11 @@
       font-weight: bold;
     }
   }
-  &__findfriends {
-    height: 50px;
+  &__findfriends {    
     display: flex;
     justify-content: space-around;    
     align-items: center;
+    height: 8%;
     background-color: @colorlightgray;        
   }
   &__findleft {
@@ -86,7 +98,66 @@
   }  
   &__findright {
     .findinputs();
-  } 
+  }
+  &__peoples {
+    //border: @border;
+    display: flex;
+    width: 100%;
+    height: 76%;
+    background-color: white;
+  }
+  &__pplleft {
+    //border: @border;
+    width: 50%;
+    border: 1px solid @colorgray;    
+  }
+  &__ppllefttext {
+    .pplblocktext();
+    border-bottom: 1px solid @colorgray;    
+  }
+  &__pplleftblock {
+    //border: @border;    
+    height: 94%;
+  }
+  &__pplright {
+    //border: @border;
+    width: 50%;    
+    border: 1px solid @colorgray;    
+  }
+  &__pplrighttext {
+    .pplblocktext();
+    //border-top: 1px solid @colorgray;
+    border-bottom: 1px solid @colorgray;
+  }
+  &__pplrightblock {
+    //border: @border;    
+    height: 94%;
+  }
+
+  &__saveblock {
+    //border: @border;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 8%;
+    background-color: @colorlightgray;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;        
+    button {
+      height: 70%;
+      width: 120px;
+      background-color: @colororange;
+      font-family: 'Play', sans-serif;
+      font-size: 1rem;
+      color: white;
+      border-radius: 12px;
+      margin-right: 15px;
+      border: none;
+      outline: none;
+      cursor: pointer;      
+    }
+  }
+  
 
 
 }
