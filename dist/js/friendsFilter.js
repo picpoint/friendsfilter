@@ -1,9 +1,5 @@
 let headerInfo = document.querySelector('.ff__selecthdr').firstElementChild;
 let pplleftblock = document.querySelector('.ff__pplleftblock');
-console.log(headerInfo);
-console.log(pplleftblock);
-
-
 
 // function vkApi(method, options) {
 //   return new Promise((resolve, reject) => {
@@ -44,7 +40,7 @@ new Promise((resolve) => {
   .then(() => {    
     return new Promise((resolve, reject) => {
       VK.api('users.get', {v: '5.8', name_case: 'gen'}, (response) => {
-        console.log(response);
+        //console.log(response);
         if(response.error) {
           reject(new Error(response.error.error_msg));
         } else {
@@ -66,10 +62,10 @@ new Promise((resolve) => {
     });
   })
   .then((response) => {
-    console.log(response);
+    //console.log(response);
     let friend = response.response.items;
     for(let key in friend) {
-      console.log(friend[key].first_name);            
+      //console.log(friend[key].first_name);            
       let leftblockfriend = document.createElement('div');
       leftblockfriend.classList.add('ff__leftblockfriend');
       pplleftblock.appendChild(leftblockfriend);
@@ -81,20 +77,23 @@ new Promise((resolve) => {
       
       let img = document.createElement('img');
       img.src = friend[key].photo_100;
-      img.style.height = '100%';
+      img.style.height = '80%';
       img.style.marginLeft = '10px';
       img.style.borderRadius = '50%';
       frienddata.appendChild(img);
 
-      let span = document.createElement('span');
-      frienddata.appendChild(span);
-      span.innerText = `${friend[key].first_name} ${friend[key].last_name}`;
-      span.style.marginLeft = '5px';
+      let spanFienddata = document.createElement('span');
+      frienddata.appendChild(spanFienddata);
+      spanFienddata.innerText = `${friend[key].first_name} ${friend[key].last_name}`;
+      spanFienddata.style.marginLeft = '20px';
 
       let friendadd = document.createElement('div');
       friendadd.classList.add('ff__friendadd');
       leftblockfriend.appendChild(friendadd);
       
-
+      let spanFriendadd = document.createElement('span');      
+      friendadd.appendChild(spanFriendadd);
+      spanFriendadd.innerText = '+';
+      
     }
   });

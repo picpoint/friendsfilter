@@ -118,15 +118,19 @@
   &__pplleftblock {
     //border: @border;    
     height: 94%;
+    overflow: auto;
   }  
   &__leftblockfriend {
-    border: @border;
+    //border: @border;
     border-bottom: 1px solid @colorgray;
     display: flex;
     height: 70px;
+    &:hover {
+      background-color: @colorlightgray;            
+    }
   }
   &__frienddata {
-    border: @border;
+    //border: @border;
     display: flex;
     align-items: center;
     width: 90%;
@@ -136,14 +140,14 @@
     }
   }
   &__friendadd {
-    border: @border;
+    //border: @border;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 10%;
     height: 100%;
     span {
-      border: @border;
+      //border: @border;
       font-size: 2.5rem;
       font-weight: bolder;
       font-family: 'Play', sans-serif;      
