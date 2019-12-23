@@ -1,5 +1,5 @@
-let headerInfo = document.querySelector('.ff__selecthdr').firstElementChild;
-let pplleftblock = document.querySelector('.ff__pplleftblock');
+let headerInfo = document.querySelector('.ff__selecthdr').firstElementChild;	// заголовок формы
+let pplleftblock = document.querySelector('.ff__pplleftblock');		// левая часть формы где друзья
 
 // function vkApi(method, options) {
 //   return new Promise((resolve, reject) => {
@@ -14,18 +14,18 @@ let pplleftblock = document.querySelector('.ff__pplleftblock');
 // }
 
 
-new Promise((resolve) => {
-  window.addEventListener('load', () => {
+new Promise((resolve) => {		// создаём промис
+  window.addEventListener('load', () => {		// по событию загрузки страницы разрешаем промис
     resolve();
   });  
 })
-  .then(() => {
-    return new Promise((resolve, reject) => {
-      VK.init({
+  .then(() => {		// тогда 
+    return new Promise((resolve, reject) => {		// новый промис
+      VK.init({		// инициализируем вк по определённому ID
         apiId: 7250280
       });
 
-      VK.Auth.login((response) => {
+      VK.Auth.login((response) => {		// авторизуемся
         //console.log(response);
         if(response.session) {          
           resolve(response);
@@ -64,6 +64,7 @@ new Promise((resolve) => {
   .then((response) => {
     //console.log(response);
     let friend = response.response.items;
+    let arr = [];
     for(let key in friend) {
       //console.log(friend[key].first_name);            
       let leftblockfriend = document.createElement('div');
@@ -95,5 +96,9 @@ new Promise((resolve) => {
       friendadd.appendChild(spanFriendadd);
       spanFriendadd.innerText = '+';
       
+      if(friendadd) {
+        arr.push(friendadd)
+      }      
     }
+    console.log(arr);
   });
