@@ -1,5 +1,6 @@
 let headerInfo = document.querySelector('.ff__selecthdr').firstElementChild;          	// заголовок формы
 let pplleftblock = document.querySelector('.ff__pplleftblock');	                      	// левая часть формы где друзья
+let pplrightblock = document.querySelector('.ff__pplrightblock');                       // правая часть формы куда добавляются друзья
 
 // function vkApi(method, options) {
 //   return new Promise((resolve, reject) => {
@@ -64,7 +65,7 @@ new Promise((resolve) => {	                                                     
   .then((response) => {                                                                  // читаем ответ
     //console.log(response);
     let friend = response.response.items;                                                // в переменную передаём обхекты друзей    
-    let arr = [];
+    let arr = [];                                                                        // определяем пустой массив для записи друзей
     for(let key in friend) {                                                             // перебираем все объекты
       //console.log(friend[key].first_name);            
       let leftblockfriend = document.createElement('div');                               // создаём див для помещения туда инфы о друге      
@@ -96,19 +97,29 @@ new Promise((resolve) => {	                                                     
       friendadd.appendChild(spanFriendadd);                                              // добавляем спан в родительский блок
       spanFriendadd.innerText = '+';                                                     // вставляем текст "+"
       
-      if(friendadd) {
-        arr.push(friendadd)
+      if(friendadd) {                                                                    // если есть блок с другом
+        arr.push(friendadd)                                                              // обавляем его в массив
       }      
     }
     //console.log(arr);
-
-    for(let i = 0; i < arr.length; i++) {
-      arr[i].addEventListener('click', (e) => {
-        if(arr[i] = e.currentTarget) {
-          console.log(arr[i]);
-          console.log(leftblockfriend.remove(arr[i].parentNode));
+    let parentLeftblock = null;                                                           // определяем переменную parent для назначения родителя
+    
+    for(let i = 0; i < arr.length; i++) {                                                 // перебираем массив
+      arr[i].addEventListener('click', (e) => {                                           // на каждый i-й элемент вешаем событие
+        if(arr[i] == e.currentTarget) {                                                   // если i-й элемент это текущий нажатый элемент
+          //console.log(arr[i]);          
+          //console.log(arr[i].parentElement);
+          parentLeftblock = arr[i].parentElement;                                         // parent присваиваем i-й элемент
+          pplleftblock.removeChild(parentLeftblock);                                      // из блока удаляем данный div с конкретныйм другом
+          pplrightblock.appendChild(parentLeftblock);                                     // данный элемент помещаем в правый div
+          //console.log(pplrightblock.childNodes);
         }
       });
     }
+
+    // let parentRightBlock = pplrightblock.childNodes;
+    // console.log(parentRightBlock);
+    
+        
 
   });

@@ -159,6 +159,7 @@
     //border: @border;
     width: 50%;    
     border: 1px solid @colorgray;    
+    overflow: auto;
   }
   &__pplrighttext {
     .pplblocktext();
@@ -168,6 +169,9 @@
   &__pplrightblock {
     //border: @border;    
     height: 94%;
+    span:nth-child(1) {      
+      transform: rotate(45deg);
+    }
   }
 
   &__saveblock {
