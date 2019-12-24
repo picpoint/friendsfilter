@@ -102,6 +102,7 @@ new Promise((resolve) => {	                                                     
     let parentLeftblock = null;                                                           // определяем переменную parent для назначения родителя     
     
     for(let i = 0; i < arr.length; i++) {                                                 // перебираем массив
+      
       arr[i].addEventListener('click', (e) => {                                           // на каждый i-й элемент вешаем событие
         if(arr[i] == e.currentTarget) {                                                   // если i-й элемент это текущий нажатый элемент          
           parentLeftblock = arr[i].parentElement;                                         // parent присваиваем i-й элемент
@@ -111,15 +112,15 @@ new Promise((resolve) => {	                                                     
         
         //console.log(pplrightblock.children);
 
-        for(let j = 0; j < pplrightblock.children.length; j++) {
-          pplrightblock.children[j].addEventListener('click', (e) => {
-            if(pplrightblock.children[j] == e.currentTarget) {
-              //console.log(pplrightblock.children[j]);
-              pplrightblock.children[j].classList.remove('ff__leftblockfriend');
-              pplrightblock.children[j].classList.add('ff__rightblockfriend');
-              
-            }
+        for(let j = 0; j < pplrightblock.children.length; j++) {                          // пробегаемся по всем дочерним элементам правого блока
+          pplrightblock.children[j].addEventListener('click', (e) => {                    // на каждый j-й дочерний элемент вешаем клик
+            if(pplrightblock.children[j] == e.currentTarget) {                            // если j-й дочерний элемент это текущий              
+              pplrightblock.children[j].classList.remove('ff__leftblockfriend');          // у данного блока удаляем класс ff__leftblockfriend и добавляем 
+              pplrightblock.children[j].classList.add('ff__rightblockfriend');            // ff__rightblockfriend чтобы при клике в правом блоке он не определялся как класс левого блока и не было путанницы            
+              console.log(pplrightblock.children[j]);
+            }                                                                             
           });
+          
         }
                 
       });
