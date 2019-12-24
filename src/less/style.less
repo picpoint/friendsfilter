@@ -106,8 +106,7 @@
     height: 76%;
     background-color: white;
   }
-  &__pplleft {
-    //border: @border;
+  &__pplleft {    
     width: 50%;
     border: 1px solid @colorgray;    
   }
@@ -160,6 +159,16 @@
     width: 50%;    
     border: 1px solid @colorgray;    
     overflow: auto;
+  }
+  &__rightblockfriend {
+    //border: @border;
+    border-bottom: 1px solid @colorgray;
+    display: flex;
+    height: 70px;
+    color: red;
+    &:hover {
+      background-color: @colorlightgray;            
+    }
   }
   &__pplrighttext {
     .pplblocktext();
