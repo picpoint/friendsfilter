@@ -117,8 +117,19 @@ new Promise((resolve) => {	                                                     
             if(pplrightblock.children[j] == e.currentTarget) {                            // если j-й дочерний элемент это текущий              
               pplrightblock.children[j].classList.remove('ff__leftblockfriend');          // у данного блока удаляем класс ff__leftblockfriend и добавляем 
               pplrightblock.children[j].classList.add('ff__rightblockfriend');            // ff__rightblockfriend чтобы при клике в правом блоке он не определялся как класс левого блока и не было путанницы            
-              console.log(pplrightblock.children[j]);
-            }                                                                             
+              //console.log(pplrightblock.children[j]);
+            }                                                                                         
+          });
+
+          pplrightblock.children[j].lastElementChild.addEventListener('click', (e) => {            
+            //console.log('******');
+            if(pplrightblock.children[j].lastElementChild == e.currentTarget) {
+              pplrightblock.removeChild(pplrightblock.children[j]);
+              pplleftblock.appendChild(pplrightblock.children[j]);
+              //console.log(pplrightblock.children[j]);
+              //console.log(pplrightblock.children[j].lastElementChild);
+            }
+            //pplrightblock.removeChild(pplrightblock.children[j]);
           });
           
         }
