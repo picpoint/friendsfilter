@@ -63,8 +63,10 @@ new Promise((resolve) => {	                                                     
     });
   })
   .then((response) => {                                                                  // читаем ответ    
-    let friend = response.response.items;                                                // в переменную передаём обхекты друзей    
-    let arr = [];                                                                        // определяем пустой массив для записи друзей
+    let friend = response.response.items;                                                // в переменную передаём объекты друзей        
+    let leftarr = [];                                                                    // определяем массив левого блока
+    //console.log(friend);
+    
     for(let key in friend) {                                                             // перебираем все объекты      
       let leftblockfriend = document.createElement('div');                               // создаём див для помещения туда инфы о друге            
       leftblockfriend.classList.add('ff__leftblockfriend');                              // добавляем класс этому диву для применение стилей
@@ -92,51 +94,43 @@ new Promise((resolve) => {	                                                     
       
       let spanFriendadd = document.createElement('span');                                // создаём спан 
       friendadd.appendChild(spanFriendadd);                                              // добавляем спан в родительский блок
-      spanFriendadd.innerText = '+';                                                     // вставляем текст "+"
-      
-      if(friendadd) {                                                                    // если есть блок с другом
-        arr.push(friendadd)                                                              // обавляем его в массив
-      }      
+      spanFriendadd.innerText = '+';                                                     // вставляем текст "+"           
+    }
+    
+    // for(let i = 0; i < friend.length; i++) {                                             // перебираем массив полученных друзей и пушим в массив левого блока      
+    //   leftarr.push(friend[i]);      
+    // }
+
+    //console.log(leftarr);
+
+    for(let x = 0; x < pplleftblock.children.length; x++) {      
+      leftarr.push(pplleftblock.children[x]);
+      // pplleftblock.children[x].lastElementChild.addEventListener('click', (e) => {        
+      //   console.log(pplleftblock);
+      //   console.log(pplleftblock.children[x]);
+      //   console.log(pplleftblock.children[x].lastElementChild);
+      //   console.log(pplleftblock.children[x].lastElementChild.children);
+
+      //   if(pplleftblock.children[x].lastElementChild.children[0].tagName == 'SPAN') {
+
+      //   }
+
+      // });
     }
 
-    let parentLeftblock = null;                                                           // определяем переменную parent для назначения родителя     
-    
-    for(let i = 0; i < arr.length; i++) {                                                 // перебираем массив
-      
-      arr[i].addEventListener('click', (e) => {                                           // на каждый i-й элемент вешаем событие
-        if(arr[i] == e.currentTarget) {                                                   // если i-й элемент это текущий нажатый элемент          
-          parentLeftblock = arr[i].parentElement;                                         // parent присваиваем i-й элемент
-          pplleftblock.removeChild(parentLeftblock);                                      // из блока удаляем данный div с конкретныйм другом
-          pplrightblock.appendChild(parentLeftblock);                                     // данный элемент помещаем в правый div          
-        }
-        
-        //console.log(pplrightblock.children);
+    console.log(leftarr);
 
-        for(let j = 0; j < pplrightblock.children.length; j++) {                          // пробегаемся по всем дочерним элементам правого блока
-          pplrightblock.children[j].addEventListener('click', (e) => {                    // на каждый j-й дочерний элемент вешаем клик
-            if(pplrightblock.children[j] == e.currentTarget) {                            // если j-й дочерний элемент это текущий              
-              pplrightblock.children[j].classList.remove('ff__leftblockfriend');          // у данного блока удаляем класс ff__leftblockfriend и добавляем 
-              pplrightblock.children[j].classList.add('ff__rightblockfriend');            // ff__rightblockfriend чтобы при клике в правом блоке он не определялся как класс левого блока и не было путанницы            
-              //console.log(pplrightblock.children[j]);
-            }                                                                                         
-          });
-
-          pplrightblock.children[j].lastElementChild.addEventListener('click', (e) => {            
-            //console.log('******');
-            if(pplrightblock.children[j].lastElementChild == e.currentTarget) {
-              pplrightblock.removeChild(pplrightblock.children[j]);
-              pplleftblock.appendChild(pplrightblock.children[j]);
-              //console.log(pplrightblock.children[j]);
-              //console.log(pplrightblock.children[j].lastElementChild);
-            }
-            //pplrightblock.removeChild(pplrightblock.children[j]);
-          });
+    for(let i = 0; i < leftarr.length; i++) {
+      leftarr[i].addEventListener('click', (e) => {
+        console.log(leftarr[i].lastElementChild);
+        console.log(leftarr[i].lastElementChild.children[0]);
+        if(leftarr[i].lastElementChild.children[0].tagName == 'SPAN') {
+          //console.log('yes');
           
         }
-                
       });
     }
     
-       
+    
 
   });
