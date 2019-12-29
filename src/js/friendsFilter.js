@@ -1,18 +1,7 @@
 let headerInfo = document.querySelector('.ff__selecthdr').firstElementChild;          	// заголовок формы
 let pplleftblock = document.querySelector('.ff__pplleftblock');	                      	// левая часть формы где друзья
 let pplrightblock = document.querySelector('.ff__pplrightblock');                       // правая часть формы куда добавляются друзья
-
-// function vkApi(method, options) {
-//   return new Promise((resolve, reject) => {
-//     VK.api(method, options, response, () => {
-//       if(response.error) {
-//         reject(new Error(response.error.error_msg));
-//       } else {
-//         resolve(response);
-//       }
-//     });
-//   });
-// }
+let leftarr = [];                                                                       // определяем массив левого блока    
 
 
 new Promise((resolve) => {	                                                          	// создаём промис
@@ -29,8 +18,7 @@ new Promise((resolve) => {	                                                     
       VK.Auth.login((response) => {		                                                  // авторизуемся
         //console.log(response);
         if(response.session) {                                                          // если прошла авторизация и сессия доступна
-          resolve(response);                                                            // резолвим ответ
-          //headerInfo.textContent = `Друзья ${response.session.user.first_name} ${response.session.user.last_name}`;          
+          resolve(response);                                                            // резолвим ответ          
         } else {
           reject(new Error(`***ERR TO AUTHORIZ***`));                                   // иначе ошибка авторизации
         }
@@ -63,9 +51,7 @@ new Promise((resolve) => {	                                                     
     });
   })
   .then((response) => {                                                                  // читаем ответ    
-    let friend = response.response.items;                                                // в переменную передаём объекты друзей        
-    let leftarr = [];                                                                    // определяем массив левого блока
-    //console.log(friend);
+    let friend = response.response.items;                                                // в переменную передаём объекты друзей                
     
     for(let key in friend) {                                                             // перебираем все объекты      
       let leftblockfriend = document.createElement('div');                               // создаём див для помещения туда инфы о друге            
@@ -94,43 +80,9 @@ new Promise((resolve) => {	                                                     
       
       let spanFriendadd = document.createElement('span');                                // создаём спан 
       friendadd.appendChild(spanFriendadd);                                              // добавляем спан в родительский блок
-      spanFriendadd.innerText = '+';                                                     // вставляем текст "+"           
-    }
-    
-    // for(let i = 0; i < friend.length; i++) {                                             // перебираем массив полученных друзей и пушим в массив левого блока      
-    //   leftarr.push(friend[i]);      
-    // }
-
-    //console.log(leftarr);
-
-    for(let x = 0; x < pplleftblock.children.length; x++) {      
-      leftarr.push(pplleftblock.children[x]);
-      // pplleftblock.children[x].lastElementChild.addEventListener('click', (e) => {        
-      //   console.log(pplleftblock);
-      //   console.log(pplleftblock.children[x]);
-      //   console.log(pplleftblock.children[x].lastElementChild);
-      //   console.log(pplleftblock.children[x].lastElementChild.children);
-
-      //   if(pplleftblock.children[x].lastElementChild.children[0].tagName == 'SPAN') {
-
-      //   }
-
-      // });
+      spanFriendadd.innerText = '+';                                                     // вставляем текст "+"                 
     }
 
-    console.log(leftarr);
-
-    for(let i = 0; i < leftarr.length; i++) {
-      leftarr[i].addEventListener('click', (e) => {
-        console.log(leftarr[i].lastElementChild);
-        console.log(leftarr[i].lastElementChild.children[0]);
-        if(leftarr[i].lastElementChild.children[0].tagName == 'SPAN') {
-          //console.log('yes');
-          
-        }
-      });
-    }
-    
     
 
   });
