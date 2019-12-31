@@ -2,6 +2,7 @@ let headerInfo = document.querySelector('.ff__selecthdr').firstElementChild;    
 let pplleftblock = document.querySelector('.ff__pplleftblock');	                      	// левая часть формы где друзья
 let pplrightblock = document.querySelector('.ff__pplrightblock');                       // правая часть формы куда добавляются друзья
 let leftarr = [];                                                                       // определяем массив левого блока    
+let rightarr = [];
 
 
 new Promise((resolve) => {	                                                          	// создаём промис
@@ -51,9 +52,9 @@ new Promise((resolve) => {	                                                     
     });
   })
   .then((response) => {                                                                  // читаем ответ    
-    let friend = response.response.items;                                                // в переменную передаём объекты друзей                
-    
-    for(let key in friend) {                                                             // перебираем все объекты      
+    let friend = response.response.items;                                                // в переменную передаём объекты друзей                       
+
+    for(let key in friend) {                                                             // перебираем все объекты            
       let leftblockfriend = document.createElement('div');                               // создаём див для помещения туда инфы о друге            
       leftblockfriend.classList.add('ff__leftblockfriend');                              // добавляем класс этому диву для применение стилей
       pplleftblock.appendChild(leftblockfriend);                                         // добавляем данный див в левый блок с друзьями
@@ -80,9 +81,30 @@ new Promise((resolve) => {	                                                     
       
       let spanFriendadd = document.createElement('span');                                // создаём спан 
       friendadd.appendChild(spanFriendadd);                                              // добавляем спан в родительский блок
-      spanFriendadd.innerText = '+';                                                     // вставляем текст "+"                 
+      spanFriendadd.innerText = '+';                                                     // вставляем текст "+"                       
+      
+      //console.log(leftblockfriend);      
+      if(leftblockfriend) {
+        leftarr.push(leftblockfriend);
+      }
     }
 
+    //console.log(leftarr);
     
+    for(let x = 0; x < leftarr.length; x++) {      
+      leftarr[x].addEventListener('click', (e) => {        
+        pplleftblock.removeChild(leftarr[x]);
+      });
+    }
+        
+    // for(let x = 0; x < pplleftblock.children.length; x++) {       
+    //   pplleftblock.children[x].lastElementChild.children[0].addEventListener('click', (e) => {                
+    //     if(pplleftblock.children[x].lastElementChild.children[0].tagName == 'SPAN') {
+    //       pplleftblock.removeChild(pplleftblock.children[x]);          
+    //     }        
+    //   });
+    // }
+
+
 
   });
