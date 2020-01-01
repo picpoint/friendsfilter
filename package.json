@@ -1,9 +1,11 @@
 {
-  "name": "snowfall",
+  "name": "friendsfilter",
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
-  "scripts": {        
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "author": "rmtar",
   "license": "ISC",
