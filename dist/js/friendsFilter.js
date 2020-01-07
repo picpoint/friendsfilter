@@ -82,30 +82,18 @@ new Promise((resolve) => {	                                                     
       let spanFriendadd = document.createElement('span');                                // создаём спан 
       friendadd.appendChild(spanFriendadd);                                              // добавляем спан в родительский блок
       spanFriendadd.innerText = '+';                                                     // вставляем текст "+"                       
-      
-      //console.log(leftblockfriend);      
+            
       if(leftblockfriend) {
         leftarr.push(leftblockfriend);
       }
     }
-
-    //console.log(leftarr);
+   
     
     for(let x = 0; x < leftarr.length; x++) {      
-      leftarr[x].addEventListener('click', (e) => {        
+      leftarr[x].lastElementChild.children[0].addEventListener('click', (e) => {                
         pplleftblock.removeChild(leftarr[x]);
       });
     }
     
-        
-    // for(let x = 0; x < pplleftblock.children.length; x++) {       
-    //   pplleftblock.children[x].lastElementChild.children[0].addEventListener('click', (e) => {                
-    //     if(pplleftblock.children[x].lastElementChild.children[0].tagName == 'SPAN') {
-    //       pplleftblock.removeChild(pplleftblock.children[x]);          
-    //     }        
-    //   });
-    // }
-
-
 
   });
