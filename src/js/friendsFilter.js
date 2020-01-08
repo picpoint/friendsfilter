@@ -2,7 +2,7 @@ let headerInfo = document.querySelector('.ff__selecthdr').firstElementChild;    
 let pplleftblock = document.querySelector('.ff__pplleftblock');	                      	// левая часть формы где друзья
 let pplrightblock = document.querySelector('.ff__pplrightblock');                       // правая часть формы куда добавляются друзья
 let leftarr = [];                                                                       // определяем массив левого блока    
-let rightarr = [];
+let rightarr = [];                                                                      // определяем массив правого блока
 
 
 new Promise((resolve) => {	                                                          	// создаём промис
@@ -83,17 +83,35 @@ new Promise((resolve) => {	                                                     
       friendadd.appendChild(spanFriendadd);                                              // добавляем спан в родительский блок
       spanFriendadd.innerText = '+';                                                     // вставляем текст "+"                       
             
-      if(leftblockfriend) {
-        leftarr.push(leftblockfriend);
+      if(leftblockfriend) {                                                              // если создаётся див
+        leftarr.push(leftblockfriend);                                                   // в массив leftarr пушим данный див с его содержимым
       }
     }
    
     
-    for(let x = 0; x < leftarr.length; x++) {      
-      leftarr[x].lastElementChild.children[0].addEventListener('click', (e) => {                
-        pplleftblock.removeChild(leftarr[x]);
+    for(let x = 0; x < leftarr.length; x++) {                                            // перебираем leftarr массив
+      leftarr[x].lastElementChild.children[0].addEventListener('click', (e) => {         // вешаем событие клик по дочернему крестику блока        
+        rightarr.push(leftarr[x]);                                                       // в массив rightarr пушим блок в котором произошло событие                       
+        pplleftblock.removeChild(leftarr[x]);                                            // при клике на крестик полностью удаляем родительский блок из массива                
+
+        for(let z = 0; z < rightarr.length; z++) {                                       // перебираем правый массив rightarr
+          rightarr[z].classList.remove('ff__leftblockfriend');                           // удаляем класс ff__leftblockfriend
+          rightarr[z].classList.add('ff__rightblockfriend');                             // назначаем новый класс ff__rightblockfriend
+          pplrightblock.appendChild(rightarr[z]);                                        // в правый блок добавляем z-й элемент из массива                              
+        }
+
+        // for(let i = 0; i < rightarr.length; i++) {
+        //   rightarr[i].addEventListener('click', (e) => {
+        //     console.log(rightarr[i]);            
+        //     pplrightblock.removeChild(rightarr[i]);            
+        //     pplleftblock.appendChild(rightarr[i]);
+        //     rightarr[i].classList.remove('ff__rightblockfriend');
+        //     rightarr[i].classList.add('ff__leftblockfriend');
+        //   });
+        // }
+
       });
-    }
-    
+    }        
+        
 
   });
