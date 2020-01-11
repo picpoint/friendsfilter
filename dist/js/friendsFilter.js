@@ -53,10 +53,12 @@ new Promise((resolve) => {	                                                     
   })
   .then((response) => {                                                                  // читаем ответ    
     let friend = response.response.items;                                                // в переменную передаём объекты друзей                       
+    let countId = 0;                                                                     // определяем счётчик id(нужен для работы скрипта saveLists.js)
 
     for(let key in friend) {                                                             // перебираем все объекты            
       let leftblockfriend = document.createElement('div');                               // создаём див для помещения туда инфы о друге            
       leftblockfriend.classList.add('ff__leftblockfriend');                              // добавляем класс этому диву для применение стилей
+      leftblockfriend.setAttribute("id", countId++);                                     // каждому блоку добавляем id со значением id++
       pplleftblock.appendChild(leftblockfriend);                                         // добавляем данный див в левый блок с друзьями
 
       let frienddata = document.createElement('div');                                    // создаём див для картинки и фио друга            
